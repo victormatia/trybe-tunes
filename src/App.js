@@ -7,14 +7,50 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Erro from './pages/Erro';
+import './App.css';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      userName: '',
+      isDisabled: true,
+    };
+  }
+
+  enableButton = () => {
+    this.setState((prevState) => {
+      const { userName } = prevState;
+      const parameter = 3;
+      const isTrue = userName.length < parameter;
+      return { isDisabled: isTrue };
+    });
+  }
+
+  inputOnChange = ({ target }) => {
+    this.setState({ [target.name]: target.value }, this.enableButton);
+  }
+
   render() {
+    const { userName, isDisabled } = this.state;
+
     return (
       <main>
         <p>TrybeTunes</p>
         <Switch>
-          <Route exact path="/" component={ Login } />
+          <Route
+            exact
+            path="/"
+            render={
+              (props) => (
+                <Login
+                  { ...props }
+                  userName={ userName }
+                  isDisabled={ isDisabled }
+                  inputOnChange={ this.inputOnChange }
+                />)
+            }
+          />
           <Route exact path="/search" component={ Search } />
           <Route exact path="/album/:id" component={ Album } />
           <Route exact path="/favorites" component={ Favorites } />
