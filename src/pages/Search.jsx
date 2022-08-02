@@ -13,7 +13,7 @@ export default class Search extends Component {
       isButtonDisabled: true,
       albums: [],
       message: '',
-      wasResearched: false,
+      wasFound: false,
     };
   }
 
@@ -38,10 +38,10 @@ export default class Search extends Component {
     const { currentSearch } = this.state;
     searchAlbumsAPI(currentSearch).then((data) => {
       if (data.length === 0) {
-        this.setState({ message: 'Nenhum álbum foi encontrado', wasResearched: false });
+        this.setState({ message: 'Nenhum álbum foi encontrado', wasFound: false });
       } else {
         this.setState({
-          wasResearched: true,
+          wasFound: true,
           searchedArtist: currentSearch,
           albums: data,
           currentSearch: '',
@@ -56,7 +56,7 @@ export default class Search extends Component {
       currentSearch,
       isButtonDisabled,
       albums, message,
-      wasResearched,
+      wasFound,
       searchedArtist,
     } = this.state;
 
@@ -82,7 +82,7 @@ export default class Search extends Component {
           </button>
         </form>
         {
-          wasResearched ? <span>{`Resultado de álbuns de: ${searchedArtist}`}</span>
+          wasFound ? <span>{`Resultado de álbuns de: ${searchedArtist}`}</span>
             : null
         }
         <section>
