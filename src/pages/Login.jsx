@@ -6,12 +6,32 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
+      userName: '',
+      isDisabled: true,
       isLoading: false,
     };
   }
 
+  handleSubimit = (event) => {
+    event.preventDefault();
+  }
+
+  enableButton = () => {
+    this.setState((prevState) => {
+      const { userName } = prevState;
+      const parameter = 3;
+      const isTrue = userName.length < parameter;
+      return { isDisabled: isTrue };
+    });
+  }
+
+  inputOnChange = ({ target }) => {
+    this.setState({ [target.name]: target.value }, this.enableButton);
+  }
+
   redirectToSearch = () => {
-    const { history, userName } = this.props;
+    const { history } = this.props;
+    const { userName } = this.state;
 
     this.setState({ isLoading: true });
 
@@ -20,13 +40,8 @@ export default class Login extends Component {
     });
   };
 
-  handleSubimit = (event) => {
-    event.preventDefault();
-  }
-
   render() {
-    const { userName, inputOnChange, isDisabled } = this.props;
-    const { isLoading } = this.state;
+    const { userName, isDisabled, isLoading } = this.state;
 
     return (
       <div data-testid="page-login">
@@ -44,7 +59,7 @@ export default class Login extends Component {
                   name="userName"
                   placeholder="Digite seu nome de usuário"
                   value={ userName }
-                  onChange={ inputOnChange }
+                  onChange={ this.inputOnChange }
                   data-testid="login-name-input"
                 />
                 <button
@@ -64,9 +79,6 @@ export default class Login extends Component {
 }
 
 Login.propTypes = {
-  userName: PropTypes.string.isRequired,
-  inputOnChange: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
