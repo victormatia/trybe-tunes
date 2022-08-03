@@ -96,7 +96,7 @@ export default class Album extends Component {
                   previewUrl={ track.previewUrl }
                   trackId={ track.trackId }
                   onInputChange={ this.handleChange }
-                  isFavorites={ isFavorites }
+                  isFavorites={ !!isFavorites[track.trackName] } // fix-auto do lint para 'isFavorites[track.trackName] ? true : false'
                 />
               </li>
             ))
