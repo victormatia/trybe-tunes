@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 export default class Album extends Component {
   constructor() {
@@ -25,6 +25,14 @@ export default class Album extends Component {
         artist: data[0].artistName,
         album: data[0].collectionName,
         tracks: data.filter((obj) => obj.trackId),
+      });
+    });
+
+    getFavoriteSongs().then((response) => {
+      response.forEach((track) => {
+        this.setState((prevState) => ({
+          isFavorites: { ...prevState.isFavorites, [track.trackName]: true },
+        }));
       });
     });
   }
@@ -51,12 +59,6 @@ export default class Album extends Component {
 
     this.saveFavorites(target.name);
   }
-
-  // handleChange = ({ target }) => {
-  //   this.setState({
-  //     isFavorites: { [target.name]: target.checked },
-  //   }, this.saveFavorites);
-  // }
 
   render() {
     const { artist, album, tracks, isLoading, isFavorites } = this.state;
