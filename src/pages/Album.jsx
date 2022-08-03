@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 export default class Album extends Component {
   constructor() {
@@ -51,13 +51,31 @@ export default class Album extends Component {
     });
   }
 
-  handleChange = ({ target }) => {
-    this.setState((prevState) => {
-      const { isFavorites } = prevState;
-      return { isFavorites: { ...isFavorites, [target.name]: target.checked } };
-    });
+  removeFavorites = (name) => {
+    const trackInfos = this.getMusicByName(name);
 
-    this.saveFavorites(target.name);
+    this.setState({ isLoading: true });
+    removeSong(trackInfos).then(() => {
+      this.setState({ isLoading: false });
+    });
+  }
+
+  handleChange = ({ target }) => {
+    if (target.checked) {
+      this.setState((prevState) => {
+        const { isFavorites } = prevState;
+        return { isFavorites: { ...isFavorites, [target.name]: target.checked } };
+      });
+
+      this.saveFavorites(target.name);
+    } else {
+      this.setState((prevState) => {
+        const { isFavorites } = prevState;
+        return { isFavorites: { ...isFavorites, [target.name]: target.checked } };
+      });
+
+      this.removeFavorites(target.name);
+    }
   }
 
   render() {
