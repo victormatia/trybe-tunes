@@ -29,14 +29,13 @@ export default class Album extends Component {
     });
   }
 
-  getMusicByName = () => {
-    const { tracks, isFavorites } = this.state;
-    const name = Object.keys(isFavorites);
-    return tracks.find((track) => track.trackName === name[0]);
+  getMusicByName = (name) => {
+    const { tracks } = this.state;
+    return tracks.find((track) => track.trackName === name);
   };
 
-  saveFavorites = () => {
-    const trackInfos = this.getMusicByName();
+  saveFavorites = (name) => {
+    const trackInfos = this.getMusicByName(name);
 
     this.setState({ isLoading: true });
     addSong(trackInfos).then(() => {
@@ -44,22 +43,23 @@ export default class Album extends Component {
     });
   }
 
-  // handleChange = ({ target }) => {
-  //   this.setState((prevState) => {
-  //     const { isFavorites } = prevState;
-
-  //     return { isFavorites: { ...isFavorites, [target.name]: target.checked } };
-  //   });
-  // }
-
   handleChange = ({ target }) => {
-    this.setState({
-      isFavorites: { [target.name]: target.checked },
-    }, this.saveFavorites);
+    this.setState((prevState) => {
+      const { isFavorites } = prevState;
+      return { isFavorites: { ...isFavorites, [target.name]: target.checked } };
+    });
+
+    this.saveFavorites(target.name);
   }
 
+  // handleChange = ({ target }) => {
+  //   this.setState({
+  //     isFavorites: { [target.name]: target.checked },
+  //   }, this.saveFavorites);
+  // }
+
   render() {
-    const { artist, album, tracks, isLoading } = this.state;
+    const { artist, album, tracks, isLoading, isFavorites } = this.state;
 
     return (
       <div data-testid="page-album">
@@ -76,6 +76,7 @@ export default class Album extends Component {
                   previewUrl={ track.previewUrl }
                   trackId={ track.trackId }
                   onInputChange={ this.handleChange }
+                  isFavorites={ isFavorites }
                 />
               </li>
             ))
