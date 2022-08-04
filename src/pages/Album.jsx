@@ -86,7 +86,14 @@ export default class Album extends Component {
         <Header />
         <h2 data-testid="artist-name">{ artist }</h2>
         <h3 data-testid="album-name">{ album }</h3>
-        { isLoading ? <span>Carregando...</span>
+        { isLoading ? (
+          (
+            <div>
+              <div className="loader" />
+              Carregando...
+            </div>
+          )
+        )
           : (
             tracks.map((track) => (
               <li key={ track.trackName }>
