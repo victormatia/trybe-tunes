@@ -6,10 +6,13 @@ export default class CardAlbums extends Component {
     const { image, albumName, artistName } = this.props;
 
     return (
-      <div>
+      <div className="cardAlbum">
         <img src={ image } alt={ `imagem do album: ${albumName}.` } />
-        <p>{ albumName }</p>
-        <p>{ artistName }</p>
+        <div className="info-music">
+          <p>{ albumName }</p>
+          <div className="divisor" />
+          <p>{ artistName }</p>
+        </div>
       </div>
     );
   }

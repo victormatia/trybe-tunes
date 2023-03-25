@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
+import art from '../images/art.png';
+import '../css/Login.css';
 
 export default class Login extends Component {
   constructor() {
@@ -47,30 +49,42 @@ export default class Login extends Component {
       <div data-testid="page-login">
         {
           isLoading ? (
-            <div>
+            <div className="loadingScreen">
               <div className="loader" />
               Carregando...
             </div>
           )
             : (
-              <form onSubmit={ this.handleSubimit }>
-                <input
-                  type="text"
-                  name="userName"
-                  placeholder="Digite seu nome de usuário"
-                  value={ userName }
-                  onChange={ this.inputOnChange }
-                  data-testid="login-name-input"
-                />
-                <button
-                  type="submit"
-                  disabled={ isDisabled }
-                  onClick={ this.redirectToSearch }
-                  data-testid="login-submit-button"
-                >
-                  Entrar
-                </button>
-              </form>
+              <section className="loginScreen">
+                <section className="leftSide">
+                  <h1>
+                    Trybe
+                    <br />
+                    <span>tunes</span>
+                  </h1>
+                  <form onSubmit={ this.handleSubimit }>
+                    <input
+                      type="text"
+                      name="userName"
+                      placeholder="Digite seu nome de usuário"
+                      value={ userName }
+                      onChange={ this.inputOnChange }
+                      data-testid="login-name-input"
+                    />
+                    <button
+                      type="submit"
+                      disabled={ isDisabled }
+                      onClick={ this.redirectToSearch }
+                      data-testid="login-submit-button"
+                    >
+                      Entrar
+                    </button>
+                  </form>
+                </section>
+                <section className="rigthSide">
+                  <img src={ art } alt="art" />
+                </section>
+              </section>
             )
         }
       </div>

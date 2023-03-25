@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../css/MusicCard.css';
 
 export default class MusicCard extends Component {
   render() {
@@ -7,7 +8,13 @@ export default class MusicCard extends Component {
     return (
       <div className="music">
         <span>{ trackName }</span>
-        <audio src={ previewUrl } controls loop data-testid="audio-component">
+        <audio
+          className="player"
+          src={ previewUrl }
+          controls
+          loop
+          data-testid="audio-component"
+        >
           <track kind="captions" />
           O seu navegador não suporta o elemento
           {' '}

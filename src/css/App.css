@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+main {
+  background-color: rgb(37, 37, 37);
+  color: rgb(227, 227, 227);
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+}
+
+a {
+  color: rgb(227, 227, 227);
+  text-decoration: none;
+}
+
+.loadingScreen {
+  align-items: center;
+  background-color: rgb(37, 37, 37);
+  color: rgb(227, 227, 227);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.loader {
+  animation: is-rotating 1s infinite;
+  border: 6px solid rgba(195, 195, 195, 0.452);
+  border-radius: 100%;
+  border-top-color: rgb(43, 228, 160);
+  height: 50px;
+  margin: 20px;
+  width: 50px;
+}
+
+@keyframes is-rotating {
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+input, button {
+  border: 2px solid rgb(238, 238, 238);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+  width: 200px;
+}
+
+button {
+  background-color: rgb(43, 228, 160);
+  border: 2px solid rgb(89, 230, 178);
+  color: white;
+  font-weight: 600;
+}
+
+li {
+  list-style: none;
+}

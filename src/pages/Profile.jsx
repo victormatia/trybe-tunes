@@ -37,7 +37,7 @@ export default class Profile extends Component {
         {
           isLoading ? (
             (
-              <div>
+              <div className="loadingScreen">
                 <div className="loader" />
                 Carregando...
               </div>

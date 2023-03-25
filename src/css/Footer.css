@@ -1,0 +1,36 @@
+footer {
+  align-items: center;
+  background-color: black;
+  color: rgb(133, 133, 133);
+  display: flex;
+  height: 150px;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 5px 30px;
+  width: 100%;
+}
+
+h4, h4 span {
+  color: rgb(43, 228, 160);
+}
+
+.more-infos, .credits {
+  text-align: left;
+}
+
+.more-infos li {
+  margin: 10px 0;
+}
+
+.contact li {
+  margin: 10px;
+}
+
+.contact, .contact ul {
+  display: flex;
+
+}
+
+.contact h4, .contact section, .contact p {
+  margin: 10px 0;
+}

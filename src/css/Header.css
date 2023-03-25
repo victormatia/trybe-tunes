@@ -1,0 +1,46 @@
+header {
+  align-items: center;
+  background-color: black;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  padding: 10px 30px;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
+header .link-nav img {
+  width: 16px;
+}
+
+.link-nav {
+  margin: 10px;
+}
+
+.link-nav:hover {
+  color: rgb(89, 230, 178);
+}
+
+.cardUser {
+  align-items: center;
+  background-color: rgb(62, 62, 62);
+  border: solid 2px rgb(81, 81, 81);
+  border-radius: 50px;
+  color: white;
+  display: flex;
+  font-weight: 500;
+  justify-content: space-evenly;
+  padding: 2px 5px;
+  width: 110px;
+}
+
+.cardUser:hover {
+  background-color: rgb(69, 142, 115);
+  border: 2px solid rgb(89, 230, 178);
+}
+
+.imageCardUser {
+  border-radius: 100%;
+  width: 25px;
+}

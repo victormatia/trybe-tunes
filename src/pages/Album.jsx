@@ -4,13 +4,17 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import '../css/Album.css';
 
 export default class Album extends Component {
   constructor() {
     super();
     this.state = {
       artist: '',
-      album: '',
+      album: {
+        name: '',
+        thumbnail: '',
+      },
       tracks: [],
       isFavorites: {},
       isLoading: false,
@@ -23,7 +27,10 @@ export default class Album extends Component {
     getMusics(id).then((data) => {
       this.setState({
         artist: data[0].artistName,
-        album: data[0].collectionName,
+        album: {
+          name: data[0].collectionName,
+          thumbnail: data[0].artworkUrl100,
+        },
         tracks: data.filter((obj) => obj.trackId),
       });
     });
@@ -80,35 +87,50 @@ export default class Album extends Component {
 
   render() {
     const { artist, album, tracks, isLoading, isFavorites } = this.state;
-
+    const coverResize = album.thumbnail.replace('100x100bb', '1000x1000bb');
     return (
-      <div data-testid="page-album">
+      <main className="album" data-testid="page-album">
         <Header />
-        <h2 data-testid="artist-name">{ artist }</h2>
-        <h3 data-testid="album-name">{ album }</h3>
-        { isLoading ? (
-          (
-            <div>
-              <div className="loader" />
-              Carregando...
-            </div>
+        <section
+          className="albumScreen"
+          style={ {
+            background: `url(${coverResize})`,
+          } }
+        >
+          <div className="blur" />
+          <section className="infoMusicAlbums">
+            <img src={ coverResize } alt="a" />
+            <h2 data-testid="artist-name">{ artist }</h2>
+            <h3 data-testid="album-name">{ album.name }</h3>
+          </section>
+          { isLoading ? (
+            (
+              <div className="loginScreen">
+                <div className="loader" />
+                Carregando...
+              </div>
+            )
           )
-        )
-          : (
-            tracks.map((track) => (
-              <li key={ track.trackName }>
-                <MusicCard
-                  track={ track }
-                  trackName={ track.trackName }
-                  previewUrl={ track.previewUrl }
-                  trackId={ track.trackId }
-                  onInputChange={ this.handleChange }
-                  isFavorites={ !!isFavorites[track.trackName] } // fix-auto do lint para 'isFavorites[track.trackName] ? true : false'
-                />
-              </li>
-            ))
-          )}
-      </div>
+            : (
+              <section className="musics">
+                <div>
+                  {tracks.map((track) => (
+                    <li key={ track.trackName }>
+                      <MusicCard
+                        track={ track }
+                        trackName={ track.trackName }
+                        previewUrl={ track.previewUrl }
+                        trackId={ track.trackId }
+                        onInputChange={ this.handleChange }
+                        isFavorites={ !!isFavorites[track.trackName] } // fix-auto do lint para 'isFavorites[track.trackName] ? true : false'
+                      />
+                    </li>
+                  ))}
+                </div>
+              </section>
+            )}
+        </section>
+      </main>
     );
   }
 }

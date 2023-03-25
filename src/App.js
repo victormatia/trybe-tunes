@@ -7,13 +7,12 @@ import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Erro from './pages/Erro';
-import './App.css';
+import './css/App.css';
 
 class App extends React.Component {
   render() {
     return (
       <main>
-        <p>TrybeTunes</p>
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/search" component={ Search } />

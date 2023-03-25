@@ -1,0 +1,44 @@
+.loginScreen {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loginScreen .leftSide, .loginScreen .rigthSide {
+  display: flex;
+  flex-basis: 50%;
+  height: 100vh;
+  justify-content: center;
+}
+
+.loginScreen h1 {
+  color: rgb(227, 227, 227);
+  font-size: 50px;
+}
+
+.loginScreen h1 span {
+  color: rgb(43, 228, 160);
+}
+
+.loginScreen .leftSide {
+  align-items: flex-start;
+  background-color: rgb(37, 37, 37);
+  flex-direction: column;
+}
+
+.leftSide form, .leftSide h1 {
+  margin-left: 20%;
+}
+
+.loginScreen .rigthSide {
+  align-items: center;
+  background-color: rgb(69, 142, 115);
+}
+
+.loginScreen .art img {
+  width: 400px;
+}
+
+.loginScreen button:disabled {
+  opacity: 0.8;
+}

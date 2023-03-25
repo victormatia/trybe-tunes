@@ -1,0 +1,82 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero {
+  align-items: center;
+  background: url('https://images.unsplash.com/photo-1658696971328-a51a40557b75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.hero h1 {
+  font-size: 30px;
+  margin: 40px 0 20px;
+}
+
+.hero input {
+  width: 300px;
+}
+
+.hero button {
+  width: 100px;
+}
+
+.span-result {
+  font-size: 30px;
+  margin: 50px;
+}
+
+.cardsAlbums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.cardAlbum {
+  background-color: rgb(62, 62, 62);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  min-height: 250px;
+  position: relative;
+  width: 200px;
+  z-index: 0;
+}
+
+.cardAlbum:hover {
+  background-color: rgb(72, 72, 72);
+  border: 2px solid rgb(89, 230, 178);
+}
+
+.cardAlbum img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+.cardAlbum p {
+  flex-basis: 80%;
+}
+
+.divisor {
+  background-color: #4d4d4d;
+  height: 1px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.info-music {
+  padding: 10px;
+  text-align: left;
+}

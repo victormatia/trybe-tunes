@@ -1,0 +1,71 @@
+.albumScreen {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.blur {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.932);
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  z-index: 0;
+}
+
+.infoMusicAlbums {
+  align-items: center;
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.infoMusicAlbums img {
+  margin-bottom: 30px;
+  width: 300px;
+}
+
+
+.music {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 30px;
+}
+
+.musics {
+  align-items: center;
+  display: flex;
+  flex-basis: 50%;
+  height: 100vh;
+  justify-content: center;
+  z-index: 1;
+}
+
+.musics div {
+  height: 58%;
+  overflow: hidden;
+}
+
+
+.musics div::-webkit-scrollbar {
+  margin-right: 20px;
+}
+
+.musics div::-webkit-scrollbar-track {
+  background-color: rgb(62, 62, 62);
+  border-radius: 20px;
+}
+
+.musics div::-webkit-scrollbar-thumb {
+  background-color: rgba(41, 192, 137, 0.313);
+  border-radius: 20px;
+}
+
+.musics div:hover {
+  overflow: auto;
+}
